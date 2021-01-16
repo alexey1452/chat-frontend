@@ -1,6 +1,6 @@
 <div class="auth-block-wrapper">
     <h1>Login to chat</h1>
-    <form class="auth-form" [formGroup]="loginForm">
+    <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput placeholder="Please enter your email" formControlName="email">
@@ -9,7 +9,7 @@
             <mat-label>Password</mat-label>
             <input matInput placeholder="Please enter your password" formControlName="password">
         </mat-form-field>
-        <button mat-raised-button color="primary">Log in</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Log in</button>
         <div class="register-block">
             <p class="question">Haven't account?</p>
             <a routerLink="/register" routerLinkActive="active">Create Account</a>
