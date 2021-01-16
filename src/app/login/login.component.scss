@@ -1,0 +1,21 @@
+.auth-block-wrapper {
+  background: #303030;
+  border-radius: 6px;
+  width: 500px;
+  padding: 24px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-block {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  .question {
+    margin-right: 8px;
+    color: #a8b8b5;
+  }
+}
