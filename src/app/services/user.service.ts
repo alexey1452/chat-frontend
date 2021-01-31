@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IUser } from '../interfaces/user.interface';
+import {IUser, IUserLogin} from '../interfaces/user.interface';
 
 @Injectable()
 export class UserService {
@@ -14,9 +14,9 @@ export class UserService {
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 
-    login(payload: IUser): Observable<IUser> {
+    login(payload: IUser): Observable<IUserLogin> {
         return this.http
-            .post<IUser>(`http://localhost:3000/users/login`, payload)
+            .post<IUserLogin>(`http://localhost:3000/users/login`, payload)
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 

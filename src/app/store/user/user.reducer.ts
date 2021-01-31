@@ -28,9 +28,10 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
             };
         }
         case userAction.LOGIN_SUCCESS: {
+            localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
-                authUser: action.payload
+                authUser: action.payload.user
             };
         }
         default:
