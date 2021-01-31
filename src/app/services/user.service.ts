@@ -14,4 +14,10 @@ export class UserService {
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 
+    login(payload: IUser): Observable<IUser> {
+        return this.http
+            .post<IUser>(`http://localhost:3000/users/login`, payload)
+            .pipe(catchError((error: any) => Observable.throw(error.json())));
+    }
+
 }

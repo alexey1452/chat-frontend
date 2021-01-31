@@ -1,0 +1,15 @@
+<div class="app-sidebar">
+    <ul *ngFor="let item of data">
+        <li class="chat-item">
+            <div class="chat-image">
+                <img src="{{item.image}}" />
+            </div>
+            <div class="chat-message">
+                <p class="chat-title">{{item.title}}</p>
+                <p class="chat-last-message">{{item.message}}</p>
+            </div>
+        </li>
+        <mat-divider></mat-divider>
+    </ul>
+    <div class="add-chat">+</div>
+</div>

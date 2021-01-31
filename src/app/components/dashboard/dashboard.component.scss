@@ -1,0 +1,19 @@
+.dashboard-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #afafaf;
+}
+.text-block {
+    color: #afafaf;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(164, 164, 164, 0.1);
+    border-radius: 20px;
+    p {
+        margin: 0;
+    }
+}

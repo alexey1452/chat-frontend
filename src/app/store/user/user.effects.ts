@@ -21,4 +21,12 @@ export class UserEffects {
         catchError(() => of(new userActions.RegisterUserError()))
     );
 
+    @Effect()
+    login$ = this.actions$.pipe(
+        ofType(userActions.LOGIN),
+        switchMap((payload: IUser) => this.userService.login(payload)),
+        switchMap((user: IUser) => of(new userActions.LoginSuccess(user))),
+        catchError(() => of(new userActions.LoginError()))
+    );
+
 }

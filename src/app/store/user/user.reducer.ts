@@ -14,12 +14,20 @@ export const initialUserState: IUserState = {
 export function userReducer(state = initialUserState, action: userAction.UserActions): IUserState {
     switch (action.type) {
         case userAction.REGISTER_USER_ERROR:
+        case userAction.LOGIN_ERROR:
+        case userAction.LOGIN:
         case userAction.REGISTER_USER: {
             return {
                 ...state,
             };
         }
         case userAction.REGISTER_USER_SUCCESS: {
+            return {
+                ...state,
+                authUser: action.payload
+            };
+        }
+        case userAction.LOGIN_SUCCESS: {
             return {
                 ...state,
                 authUser: action.payload

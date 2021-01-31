@@ -4,3 +4,9 @@ export interface IUser {
     lastName: string;
     email: string;
 }
+
+export interface IUserLogin {
+    token: string;
+    user: IUser;
+    success: boolean;
+}

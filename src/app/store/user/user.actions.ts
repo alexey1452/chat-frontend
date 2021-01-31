@@ -18,4 +18,21 @@ export class RegisterUserError implements Action {
     readonly type = REGISTER_USER_ERROR;
 }
 
-export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError;
+export const LOGIN = '[IUser] Login';
+export class Login implements Action {
+    readonly type = LOGIN;
+    constructor(public payload: IUser) {}
+}
+
+export const LOGIN_SUCCESS = '[IUser] Login IUser Success';
+export class LoginSuccess implements Action {
+    readonly type = LOGIN_SUCCESS;
+    constructor(public payload: IUser) {}
+}
+
+export const LOGIN_ERROR = '[IUser] Login IUser Error';
+export class LoginError implements Action {
+    readonly type = LOGIN_ERROR;
+}
+
+export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError | Login | LoginSuccess | LoginError;

@@ -13,19 +13,30 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
 import {UserEffects} from './store/user/user.effects';
 import {StoreModule} from '@ngrx/store';
 import {reducers} from './store/app.store';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {UserService} from './services/user.service';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    DashboardLayoutComponent,
+    DashboardComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +46,8 @@ import {UserService} from './services/user.service';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
     !environment.production ? StoreDevtoolsModule : [],
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects])
