@@ -10,13 +10,19 @@ export class UserService {
 
     registerUser(payload: IUser): Observable<IUser> {
         return this.http
-            .post<IUser>(`http://localhost:3000/users/register`, payload)
+            .post<IUser>(`http://localhost:3000/auth/register`, payload)
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 
     login(payload: IUser): Observable<IUserLogin> {
         return this.http
-            .post<IUserLogin>(`http://localhost:3000/users/login`, payload)
+            .post<IUserLogin>(`http://localhost:3000/auth/login`, payload)
+            .pipe(catchError((error: any) => Observable.throw(error.json())));
+    }
+
+    getUser(): Observable<IUser> {
+        return this.http
+            .get<IUser>(`http://localhost:3000/users/im`)
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 

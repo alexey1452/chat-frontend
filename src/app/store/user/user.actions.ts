@@ -35,7 +35,6 @@ export class LoginError implements Action {
     readonly type = LOGIN_ERROR;
 }
 
-
 export const LOGOUT = 'Logout';
 export class Logout implements Action {
     readonly type = LOGOUT;
@@ -46,5 +45,21 @@ export class LogoutSuccess implements Action {
     readonly type = LOGOUT_SUCCESS;
 }
 
+export const GET_USER = '[IUser] Get User';
+export class GetUser implements Action {
+    readonly type = GET_USER;
+}
+
+export const GET_USER_SUCCESS = '[IUser] Get User Success';
+export class GetUserSuccess implements Action {
+    readonly type = GET_USER_SUCCESS;
+    constructor(public payload: IUser) {}
+}
+
+export const GET_USER_ERROR = '[IUser] Get User Error';
+export class GetUserError implements Action {
+    readonly type = GET_USER_ERROR;
+}
+
 export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError | Login | LoginSuccess | LoginError |
-    Logout | LogoutSuccess;
+    Logout | LogoutSuccess | GetUser | GetUserSuccess | GetUserError;

@@ -49,4 +49,12 @@ export class UserEffects {
         tap(() => this.router.navigateByUrl('/login'))
     );
 
+    @Effect()
+    getUser$ = this.actions$.pipe(
+        ofType(userActions.GET_USER),
+        switchMap(() => this.userService.getUser()),
+        switchMap((user: IUser) => of(new userActions.GetUserSuccess(user))),
+        catchError(() => of(new userActions.GetUserError()))
+    );
+
 }

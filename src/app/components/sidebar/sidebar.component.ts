@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {GroupCreateDialogComponent} from '../group-create-dialog/group-create-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,9 +19,15 @@ export class SidebarComponent implements OnInit {
     id: 2,
     title: 'Diallog 2'
   }];
-  constructor() { }
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  openDialog(): void {
+    this.dialog.open(GroupCreateDialogComponent, {
+      width: '300px',
+    });
+  }
 }

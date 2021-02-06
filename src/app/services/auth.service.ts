@@ -9,4 +9,8 @@ export class AuthService {
         return !!token;
 
     }
+
+    public getToken(): string|null {
+        return localStorage.getItem('token');
+    }
 }

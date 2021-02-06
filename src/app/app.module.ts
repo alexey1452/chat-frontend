@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -27,8 +27,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
+import { GroupCreateDialogComponent } from './components/group-create-dialog/group-create-dialog.component';
+import {AuthInterceptor} from './auth-interceptor';
+import {GroupEffects} from './store/group/group.effects';
+import {GroupService} from "./services/group.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +44,8 @@ import {AuthGuardService} from './services/auth-guard.service';
     DashboardLayoutComponent,
     DashboardComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    GroupCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,14 +58,24 @@ import {AuthGuardService} from './services/auth-guard.service';
     MatIconModule,
     MatDividerModule,
     MatMenuModule,
+    MatDialogModule,
     !environment.production ? StoreDevtoolsModule : [],
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([
+        UserEffects,
+        GroupEffects
+    ])
   ],
   providers: [
       UserService,
       AuthService,
-      AuthGuardService
+      AuthGuardService,
+      GroupService,
+      {
+        provide : HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi   : true,
+      },
   ],
   bootstrap: [AppComponent]
 })

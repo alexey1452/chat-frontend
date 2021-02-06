@@ -1,22 +1,30 @@
 import * as userAction from './user.actions';
 import { IUser } from '../../interfaces/user.interface';
+import {createFeatureSelector, createSelector} from "@ngrx/store";
 
 export interface IUserState {
-    authUser: IUser|null;
-    users: IUser[]|null;
+    authUser: IUser;
+    users: IUser[];
 }
 
 export const initialUserState: IUserState = {
-    authUser: null,
-    users: null
+    authUser: {
+        _id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+    },
+    users: []
 };
 
 export function userReducer(state = initialUserState, action: userAction.UserActions): IUserState {
     switch (action.type) {
         case userAction.REGISTER_USER_ERROR:
         case userAction.LOGIN_ERROR:
+        case userAction.GET_USER_ERROR:
         case userAction.LOGIN:
         case userAction.LOGOUT:
+        case userAction.GET_USER:
         case userAction.REGISTER_USER: {
             return {
                 ...state,
@@ -35,14 +43,28 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
                 authUser: action.payload.user
             };
         }
+        case userAction.GET_USER_SUCCESS: {
+            return {
+                ...state,
+                authUser: action.payload
+            };
+        }
         case userAction.LOGOUT_SUCCESS: {
             localStorage.removeItem('token');
             return {
                 ...state,
-                authUser: null
+                authUser: initialUserState.authUser
             };
         }
         default:
             return state;
     }
 }
+
+export const getUserState =
+    createFeatureSelector<IUserState>('user');
+
+export const getAuthUser = createSelector(
+    getUserState,
+    (state: IUserState) => state.authUser,
+);

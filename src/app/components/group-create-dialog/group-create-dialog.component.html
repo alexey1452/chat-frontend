@@ -1,0 +1,9 @@
+<div class="group-create-dialog-wrapper">
+    <form class="group-create" [formGroup]="groupCreateForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Please enter group title" formControlName="title">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!groupCreateForm.valid">Create</button>
+    </form>
+</div>
