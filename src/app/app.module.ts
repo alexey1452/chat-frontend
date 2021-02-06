@@ -27,6 +27,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {AuthService} from './services/auth.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,11 @@ import {MatMenuModule} from '@angular/material/menu';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects])
   ],
-  providers: [UserService],
+  providers: [
+      UserService,
+      AuthService,
+      AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
