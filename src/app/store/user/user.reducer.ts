@@ -16,6 +16,7 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
         case userAction.REGISTER_USER_ERROR:
         case userAction.LOGIN_ERROR:
         case userAction.LOGIN:
+        case userAction.LOGOUT:
         case userAction.REGISTER_USER: {
             return {
                 ...state,
@@ -32,6 +33,13 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
             return {
                 ...state,
                 authUser: action.payload.user
+            };
+        }
+        case userAction.LOGOUT_SUCCESS: {
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                authUser: null
             };
         }
         default:

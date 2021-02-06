@@ -27,6 +27,9 @@
 .user-block {
     display: flex;
     align-items: center;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .username {

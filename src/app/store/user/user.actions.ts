@@ -35,4 +35,16 @@ export class LoginError implements Action {
     readonly type = LOGIN_ERROR;
 }
 
-export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError | Login | LoginSuccess | LoginError;
+
+export const LOGOUT = 'Logout';
+export class Logout implements Action {
+    readonly type = LOGOUT;
+}
+
+export const LOGOUT_SUCCESS = 'Logout Success';
+export class LogoutSuccess implements Action {
+    readonly type = LOGOUT_SUCCESS;
+}
+
+export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError | Login | LoginSuccess | LoginError |
+    Logout | LogoutSuccess;

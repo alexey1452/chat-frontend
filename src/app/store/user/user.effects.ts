@@ -37,4 +37,16 @@ export class UserEffects {
         tap(() => this.router.navigateByUrl('/dashboard'))
     );
 
+    @Effect()
+    logout$ = this.actions$.pipe(
+        ofType(userActions.LOGOUT),
+        switchMap(() => of(new userActions.LogoutSuccess())),
+    );
+
+    @Effect({ dispatch: false })
+    logoutSuccess = this.actions$.pipe(
+        ofType(userActions.LOGOUT_SUCCESS),
+        tap(() => this.router.navigateByUrl('/login'))
+    );
+
 }

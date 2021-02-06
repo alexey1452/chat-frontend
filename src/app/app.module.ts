@@ -26,6 +26,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatMenuModule,
     !environment.production ? StoreDevtoolsModule : [],
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects])
