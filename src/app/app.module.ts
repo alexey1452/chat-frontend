@@ -34,6 +34,7 @@ import { GroupCreateDialogComponent } from './components/group-create-dialog/gro
 import {AuthInterceptor} from './auth-interceptor';
 import {GroupEffects} from './store/group/group.effects';
 import {GroupService} from "./services/group.service";
+import { ProfileDialogComponent } from './components/profile-dialog/profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {GroupService} from "./services/group.service";
     DashboardComponent,
     SidebarComponent,
     HeaderComponent,
-    GroupCreateDialogComponent
+    GroupCreateDialogComponent,
+    ProfileDialogComponent
   ],
   imports: [
     BrowserModule,

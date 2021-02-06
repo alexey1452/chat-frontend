@@ -5,6 +5,8 @@ import { IUser } from '../../interfaces/user.interface';
 import { getAuthUser } from '../../store/user/user.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {ProfileDialogComponent} from '../profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,10 @@ export class HeaderComponent implements OnInit {
   authUser$: Observable<IUser>;
   username: string;
 
-  constructor(private store: Store<IAppStore>) {
+  constructor(
+      private store: Store<IAppStore>,
+      public dialog: MatDialog
+  ) {
       this.username = '';
       this.authUser$ = this.store.select(getAuthUser);
       this.authUser$.subscribe(user => {
@@ -27,5 +32,11 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
       this.store.dispatch(new Logout());
+  }
+
+  openDialog(): void {
+      this.dialog.open(ProfileDialogComponent, {
+          width: '500px',
+      });
   }
 }

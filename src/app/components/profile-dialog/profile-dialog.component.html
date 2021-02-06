@@ -1,0 +1,21 @@
+<div class="group-create-dialog-wrapper">
+    <form class="group-create" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput placeholder="First name" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last name" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>New Password (option)</mat-label>
+            <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Update</button>
+    </form>
+</div>
