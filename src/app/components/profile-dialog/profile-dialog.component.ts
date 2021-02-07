@@ -7,6 +7,7 @@ import {IAppStore} from '../../store/app.store';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {getAuthUser} from '../../store/user/user.reducer';
 import {DialogData} from '../group-create-dialog/group-create-dialog.component';
+import {UpdateUser} from '../../store/user/user.actions';
 
 @Component({
   selector: 'app-profile-dialog',
@@ -50,7 +51,16 @@ export class ProfileDialogComponent implements OnInit {
 
   onSubmit(): void {
     const values = this.profileForm.value;
-    console.log(values);
+    let userId = '';
+    if (values.password === '') {
+      delete values.password;
+    }
+    this.authUser$.subscribe(user => userId = user._id);
+    this.store.dispatch(new UpdateUser({
+      data: values,
+      userId
+    }));
+
     this.close();
   }
 }

@@ -1,6 +1,6 @@
 import * as userAction from './user.actions';
 import { IUser } from '../../interfaces/user.interface';
-import {createFeatureSelector, createSelector} from "@ngrx/store";
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface IUserState {
     authUser: IUser;
@@ -24,6 +24,8 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
         case userAction.GET_USER_ERROR:
         case userAction.LOGIN:
         case userAction.LOGOUT:
+        case userAction.UPDATE_USER:
+        case userAction.UPDATE_USER_ERROR:
         case userAction.GET_USER:
         case userAction.REGISTER_USER: {
             return {
@@ -54,6 +56,12 @@ export function userReducer(state = initialUserState, action: userAction.UserAct
             return {
                 ...state,
                 authUser: initialUserState.authUser
+            };
+        }
+        case userAction.UPDATE_USER_SUCCESS: {
+            return {
+                ...state,
+                authUser: action.payload
             };
         }
         default:

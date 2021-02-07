@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {IUser, IUserLogin} from '../interfaces/user.interface';
+import {IUser, IUserLogin, IUserUpdate} from '../interfaces/user.interface';
 
 @Injectable()
 export class UserService {
@@ -26,4 +26,9 @@ export class UserService {
             .pipe(catchError((error: any) => Observable.throw(error.json())));
     }
 
+    updateUser(payload: IUserUpdate): Observable<IUser> {
+        return this.http
+            .put<IUser>(`http://localhost:3000/users/im`, payload)
+            .pipe(catchError((error: any) => Observable.throw(error.json())));
+    }
 }

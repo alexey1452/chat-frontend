@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {IUser, IUserLogin} from '../../interfaces/user.interface';
+import {IUser, IUserLogin, IUserUpdate} from '../../interfaces/user.interface';
 
 export const REGISTER_USER = '[IUser] Register IUser';
 export class RegisterUser implements Action {
@@ -61,5 +61,22 @@ export class GetUserError implements Action {
     readonly type = GET_USER_ERROR;
 }
 
+export const UPDATE_USER = '[IUserUpdate] Update IUser';
+export class UpdateUser implements Action {
+    readonly type = UPDATE_USER;
+    constructor(public payload: IUserUpdate) {}
+}
+
+export const UPDATE_USER_SUCCESS = '[IUser] Update IUser Success';
+export class UpdateUserSuccess implements Action {
+    readonly type = UPDATE_USER_SUCCESS;
+    constructor(public payload: IUser) {}
+}
+
+export const UPDATE_USER_ERROR = '[IUser] Update IUser Error';
+export class UpdateUserError implements Action {
+    readonly type = UPDATE_USER_ERROR;
+}
+
 export type UserActions = RegisterUser | RegisterUserSuccess | RegisterUserError | Login | LoginSuccess | LoginError |
-    Logout | LogoutSuccess | GetUser | GetUserSuccess | GetUserError;
+    Logout | LogoutSuccess | GetUser | GetUserSuccess | GetUserError | UpdateUser | UpdateUserSuccess | UpdateUserError;

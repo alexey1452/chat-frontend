@@ -3,7 +3,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import {switchMap, catchError, tap} from 'rxjs/operators';
 import * as userActions from './user.actions';
 import { UserService } from '../../services/user.service';
-import {IUser, IUserLogin} from '../../interfaces/user.interface';
+import {IUser, IUserLogin, IUserUpdate} from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
@@ -55,6 +55,14 @@ export class UserEffects {
         switchMap(() => this.userService.getUser()),
         switchMap((user: IUser) => of(new userActions.GetUserSuccess(user))),
         catchError(() => of(new userActions.GetUserError()))
+    );
+
+    @Effect()
+    updateUser$ = this.actions$.pipe(
+        ofType(userActions.UPDATE_USER),
+        switchMap((payload: IUserUpdate) => this.userService.updateUser(payload)),
+        switchMap((user: IUser) => of(new userActions.UpdateUserSuccess(user))),
+        catchError(() => of(new userActions.UpdateUserError()))
     );
 
 }

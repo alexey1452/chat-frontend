@@ -13,8 +13,8 @@
             <input matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field>
-            <mat-label>New Password (option)</mat-label>
-            <input matInput placeholder="Password" formControlName="password">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password">
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Update</button>
     </form>
